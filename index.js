@@ -1,12 +1,13 @@
+#!/usr/bin/env node
 const commander = require('commander');
 const { addCategory,
         addItem,
         purchase,
-        list } = require('./controllers/controller');
+        list,
+        clear } = require('./controllers/controller');
 
 commander
   .command('addCategory <name> <price> <availableAmount>')
-  .alias('a')
   .description('add category')
   .action((name, price, availableAmount) => {
     addCategory({ name, price, availableAmount });
@@ -14,7 +15,6 @@ commander
 
 commander
   .command('addItem <name> <availableAmount>')
-  .alias('i')
   .description('add item')
   .action((name, availableAmount) => {
     addItem({ name, availableAmount });
@@ -22,7 +22,6 @@ commander
 
 commander
   .command('purchase <name> <date>')
-  .alias('i')
   .description('purchase item')
   .action((name, date) => {
     purchase({ name, date });
@@ -30,10 +29,16 @@ commander
 
 commander
   .command('list')
-  .alias('i')
-  .description('purchase item')
+  .description('list of items')
   .action(() => {
     list();
+  });
+
+commander
+  .command('clear')
+  .description('clear categories with no items available')
+  .action(() => {
+    clear();
   });
 
 commander.parse(process.argv);
