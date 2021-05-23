@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const purchaseSchema = new Schema({
   name: String,
-  date: String,
+  date: Date,
   category: { type: Schema.Types.ObjectId, ref: 'Category' }
 });
 
