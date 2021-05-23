@@ -4,7 +4,8 @@ const { addCategory,
         addItem,
         purchase,
         list,
-        clear } = require('./controllers/controller');
+        clear,
+        report } = require('./src/controllers/controller');
 
 commander
   .command('addCategory <name> <price> <availableAmount>')
@@ -39,6 +40,13 @@ commander
   .description('clear categories with no items available')
   .action(() => {
     clear();
+  });
+
+commander
+  .command('report <date>')
+  .description('show reports by date')
+  .action((date) => {
+    report({ date });
   });
 
 commander.parse(process.argv);

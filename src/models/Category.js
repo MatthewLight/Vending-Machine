@@ -1,4 +1,4 @@
-const mongoose = require('../mongo');
+const mongoose = require('../../mongo');
 const { Schema } = mongoose;
 
 const categorySchema = new Schema({
@@ -6,5 +6,9 @@ const categorySchema = new Schema({
   price: Number,
   availableAmount: { type: Number, default: 0},
 });
+
+categorySchema.statics.checkIfExistsByName = function(name) {
+  return this.exists({ name });
+};
 
 module.exports = mongoose.mongoose.model('Category', categorySchema);

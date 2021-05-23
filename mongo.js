@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
+mongoose.set('useFindAndModify', false);
+
 dotenv.config();
 
 const credentials = process.env.MONGO_URI;
